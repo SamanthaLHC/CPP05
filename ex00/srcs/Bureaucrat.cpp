@@ -34,9 +34,42 @@ Bureaucrat::~Bureaucrat(void)
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
-	// verif rhs == this
+	if (rhs != this)
+	{
+		this->_grade = rhs._grade;
+		this->_name = rhs._name;
+	}
 	return (*this);
 }
 
-// members functions===========================================================
+std::ostream &operator<<(std::ostream &out_stream, Bureaucrat const &input)
+{
+	out_stream << input.get_name() << ", bureaucrate grade " << input.get_grade();
+	return out_stream;
+}
+
+// accessors ==================================================================
 //=============================================================================
+
+std::string Bureaucrat::get_name() const
+{
+	return this->_name;
+}
+
+unsigned int Bureaucrat::get_grade() const
+{
+	return this->_grade;
+}
+
+// members functions ==========================================================
+//=============================================================================
+
+void promotion_grade(unsigned int grade)
+{
+	//here use exception
+}
+
+void demotion_grade(unsigned int grade)
+{
+	//here use exception
+}
