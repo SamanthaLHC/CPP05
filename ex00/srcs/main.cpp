@@ -125,4 +125,15 @@ int main()
 			std::cerr << BRED << err.what() << RES << std::endl;
 		}
 	}
+	{
+		std::cout << std::endl;
+		std::cout << BCYN << "________CHECk COPY CONSTRUCTOR____________" << RES << std::endl;
+		std::cout << std::endl;
+
+		{
+			Bureaucrat pouet("Zarniwoop", 98);
+			Bureaucrat vogon_guard = pouet;
+			std::cout << vogon_guard << std::endl;
+		}
+	}
 }

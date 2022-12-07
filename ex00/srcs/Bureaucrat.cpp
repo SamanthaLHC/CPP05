@@ -21,9 +21,8 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name), _gra
 	return;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &cpy)
+Bureaucrat::Bureaucrat(Bureaucrat const &cpy) : _name(cpy._name)
 {
-
 	std::cout << BWHT << this->_name << " Bureaucrat copy constructor called." << RES << std::endl;
 	*this = cpy;
 }
