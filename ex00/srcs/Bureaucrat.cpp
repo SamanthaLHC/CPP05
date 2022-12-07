@@ -4,15 +4,20 @@
 // constructs ans destruct======================================================
 //=============================================================================
 
-Bureaucrat::Bureaucrat(void) : _name("")
+Bureaucrat::Bureaucrat(void) : _name(""), _grade(0)
 {
 	std::cout << BWHT << this->_name << " Bureaucrat default constructor called." << RES << std::endl;
 	return;
 }
 
-Bureaucrat::Bureaucrat(std::string name) : _name(name)
+Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name), _grade(grade)
 {
-	std::cout << BWHT << this->_name << " Bureaucrat name in param constructor called." << RES << std::endl;
+	if (this->_grade < 1)
+		throw GradeTooHighException();
+	else if (this->_grade > 150)
+		throw GradeTooLowException();
+	else
+		std::cout << BWHT << this->_name << " Bureaucrat NAME constructor called." << RES << std::endl;
 	return;
 }
 
@@ -34,17 +39,15 @@ Bureaucrat::~Bureaucrat(void)
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
-	if (rhs != this)
-	{
+	if (this != &rhs)
 		this->_grade = rhs._grade;
-		this->_name = rhs._name;
-	}
 	return (*this);
 }
 
 std::ostream &operator<<(std::ostream &out_stream, Bureaucrat const &input)
 {
-	out_stream << input.get_name() << ", bureaucrate grade " << input.get_grade();
+	out_stream << BMAG << input.get_name() << ", bureaucrate grade "
+			   << input.get_grade() << RES;
 	return out_stream;
 }
 
@@ -61,15 +64,33 @@ unsigned int Bureaucrat::get_grade() const
 	return this->_grade;
 }
 
+// Exceptions handler =========================================================
+//=============================================================================
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade range error: way too high.";
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade range error: way too low.";
+}
+
 // members functions ==========================================================
 //=============================================================================
 
-void promotion_grade(unsigned int grade)
+// promotion_grade() and demotion_grade() should be use in try/ catch scope in order
+// to avoid crash (because of the throw here)
+
+void Bureaucrat::promotion_grade(unsigned int grade)
 {
-	//here use exception
+	if (this->_grade <= 1 || ((this->_grade -= grade) <= 1))
+		throw GradeTooHighException();
 }
 
-void demotion_grade(unsigned int grade)
+void Bureaucrat::demotion_grade(unsigned int grade)
 {
-	//here use exception
+	if (this->_grade >= 150 || ((this->_grade += grade) >= 150))
+		throw GradeTooLowException();
 }

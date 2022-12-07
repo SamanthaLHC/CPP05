@@ -1,3 +1,6 @@
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRATE_HPP
+
 #include <iostream>
 #include <string>
 
@@ -6,8 +9,7 @@ class Bureaucrat
 	public:
 //______________Constructors an destructor_________________________________
 		
-		Bureaucrat(void);
-		Bureaucrat(std::string name);
+		Bureaucrat(std::string name, unsigned int grade);
 		Bureaucrat(Bureaucrat const &cpy);
 		~Bureaucrat(void);
 
@@ -22,23 +24,26 @@ class Bureaucrat
 
 //______________Exceptions__________________________________________________
 
-		GradeTooHighException
+		class GradeTooHighException: public std::exception
 		{
-
+			const char *what () const throw ();
 		};
 
-		GradeTooLowException
+		class GradeTooLowException: public std::exception
 		{
-
+			const char *what () const throw ();
 		};
-
-	private:
-
-		std::string const	_name;
-		unsigned int 		_grade;
+//______________Members functions______________________________________
 
 		void promotion_grade(unsigned int grade);
 		void demotion_grade(unsigned int grade);
+
+	private:
+
+		Bureaucrat(void);
+		std::string const	_name;
+		unsigned int 		_grade;
+
 };
 
 std::ostream& operator<<(std::ostream& o, Bureaucrat const& i);

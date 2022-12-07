@@ -10,6 +10,7 @@ SRCS_PATH = ./srcs/
 OBJ_PATH = ./objs/
 
 SRCS = $(addprefix $(SRCS_PATH), \
+		Bureaucrat.cpp \
 		main.cpp)
 
 OBJS	= $(SRCS:$(SRCS_PATH)%.cpp=$(OBJ_PATH)%.o)
@@ -38,7 +39,7 @@ re: fclean
 grind: ${NAME}
 		valgrind ./$(NAME)
 
-run: re $(NAME)
+run: $(NAME)
 	./$(NAME)
 
 .PHONY: clean fclean re grind run
