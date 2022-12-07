@@ -94,3 +94,18 @@ void Bureaucrat::demotion_grade(unsigned int grade)
 	if (this->_grade >= 150 || ((this->_grade += grade) >= 150))
 		throw GradeTooLowException();
 }
+
+void Bureaucrat::sign_form(Form &form_to_sign)
+{
+	try
+	{
+		form_to_sign.be_signed(*this);
+		std::cout << BYEL << this->_name << " signed " << form_to_sign.get_name()
+				  << RES<< std::endl;
+	}
+	catch(const std::exception& err)	
+	{
+		std::cerr << BRED << this->_name << " couldn't sign " << form_to_sign.get_name()
+		<< " because: " << err.what() << std::endl;
+	}
+}

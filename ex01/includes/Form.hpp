@@ -37,6 +37,12 @@ class Form
 		{
 			const char *what () const throw ();
 		};
+
+		class FormAlreadySigned: public std::exception
+		{
+			const char *what () const throw ();
+		};
+
 //______________Members functions______________________________________
 
 		void be_signed(Bureaucrat& bureaucrat);

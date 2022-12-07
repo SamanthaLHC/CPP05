@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 #include "colors.h"
 
 // constructs ans destruct======================================================
@@ -90,14 +91,23 @@ const char *Form::GradeTooLowException::what() const throw()
 	return "Bad grade status: way too low.";
 }
 
+const char *Form::FormAlreadySigned::what() const throw()
+{
+	return "Form already signed.";
+}
+
 // members functions ==========================================================
 //=============================================================================
 
-// promotion_grade() and demotion_grade() should be use in try/ catch scope in order
+// be_signed should be use in try/ catch scope in order
 // to avoid crash (because of the throw here)
 
 void Form::be_signed(Bureaucrat& bureaucrat)
 {
-	if (this->_grade <= 1 || ((this->_grade -= grade) <= 1))
-		throw GradeTooHighException();
+	if (bureaucrat.get_grade() > this->_grade_to_sign)
+		throw GradeTooLowException();
+	if (this->_is_signed == true)
+		throw FormAlreadySigned();
+	else
+		this->_is_signed = true;
 }

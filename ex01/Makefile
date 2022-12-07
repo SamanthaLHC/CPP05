@@ -1,6 +1,6 @@
 NAME = bureaucrat
 
-CXX = c++
+CXX = clang++
 CXXFLAGS = -MMD -g3 -Wall -Wextra -Werror -std=c++98
 
 
@@ -11,6 +11,7 @@ OBJ_PATH = ./objs/
 
 SRCS = $(addprefix $(SRCS_PATH), \
 		Bureaucrat.cpp \
+		Form.cpp \
 		main.cpp)
 
 OBJS	= $(SRCS:$(SRCS_PATH)%.cpp=$(OBJ_PATH)%.o)
