@@ -1,6 +1,6 @@
 NAME = bureaucrat
 
-CXX = clang++
+CXX = c++
 CXXFLAGS = -MMD -g3 -Wall -Wextra -Werror -std=c++98
 
 
