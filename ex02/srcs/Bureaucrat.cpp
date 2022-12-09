@@ -1,5 +1,5 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "colors.h"
 
 // constructs ans destruct======================================================
@@ -95,7 +95,7 @@ void Bureaucrat::demotion_grade(unsigned int grade)
 		throw GradeTooLowException();
 }
 
-void Bureaucrat::sign_form(Form &form_to_sign)
+void Bureaucrat::sign_form(AForm &form_to_sign)
 {
 	try
 	{
@@ -106,6 +106,19 @@ void Bureaucrat::sign_form(Form &form_to_sign)
 	catch(const std::exception& err)	
 	{
 		std::cerr << BRED << this->_name << " couldn't sign " << form_to_sign.get_name()
+		<< " because: " << err.what() << std::endl;
+	}
+}
+
+void Bureaucrate::execute_form(Form const & form)
+{
+	try
+	{
+
+	}
+	catch(const std::exception& err)	
+	{
+		std::cerr << BRED << this->_name << " couldn't execute " << form.get_name()
 		<< " because: " << err.what() << std::endl;
 	}
 }

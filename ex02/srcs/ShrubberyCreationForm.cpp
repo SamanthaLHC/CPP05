@@ -6,14 +6,13 @@
 // constructs ans destruct======================================================
 //=============================================================================
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : _name(""), _grade_to_sign(0), _grade_to_exec(0), _is_signed(false)
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("non_valid_form", 0, 0)
 {
-	std::cout << BWHT << this->_name << " ShrubberyCreationForm default constructor called." << RES << std::endl;
+	std::cout << BWHT << this->get_name() << " ShrubberyCreationForm default constructor called." << RES << std::endl;
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name, unsigned int grade_sign, unsigned int grade_exec) : _name(name),
- _grade_to_sign(grade_sign), _grade_to_exec(grade_exec), _is_signed(false)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubbery", 145, 137)
 {
 	if (this->_grade_to_sign < 1 || this->_grade_to_exec < 1)
 		throw GradeTooHighException();
@@ -56,28 +55,7 @@ std::ostream &operator<<(std::ostream &out_stream, ShrubberyCreationForm const &
 	return out_stream;
 }
 
-// accessors ==================================================================
-//=============================================================================
 
-std::string ShrubberyCreationForm::get_name() const
-{
-	return this->_name;
-}
-
-unsigned int ShrubberyCreationForm::get_grade_to_sign() const
-{
-	return this->_grade_to_sign;
-}
-
-unsigned int ShrubberyCreationForm::get_grade_to_exec() const
-{
-	return this->_grade_to_exec;
-}
-
-bool ShrubberyCreationForm::get_signed_status() const
-{
-	return this->_is_signed;
-}
 
 // Exceptions handler =========================================================
 //=============================================================================

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -40,6 +40,7 @@ class Bureaucrat
 		void promotion_grade(unsigned int grade);
 		void demotion_grade(unsigned int grade);
 		void sign_form(Form& form_to_sign);
+		void execute_form(Form const & form);
 
 
 	private:
