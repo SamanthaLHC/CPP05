@@ -8,12 +8,16 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("non_valid_form", 0, 0)
 {
+	this->_already_executed_flag = false;
+	this->_target = "unkwowm";
 	std::cout << BWHT << this->get_name() << " ShrubberyCreationForm default constructor called." << RES << std::endl;
 	return;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubbery", 145, 137)
 {
+	this->_already_executed_flag = false;
+	this->_target = target;
 	if (this->_grade_to_sign < 1 || this->_grade_to_exec < 1)
 		throw GradeTooHighException();
 	else if (this->_grade_to_sign > 150 || this->_grade_to_exec > 150)
@@ -24,7 +28,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubb
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &cpy) : _name(cpy._name), _grade_to_sign(cpy._grade_to_sign),
-							 _grade_to_exec(cpy._grade_to_exec), _is_signed(cpy._is_signed)
+																				 _grade_to_exec(cpy._grade_to_exec), _is_signed(cpy._is_signed)
 {
 	std::cout << BWHT << this->_name << " ShrubberyCreationForm copy constructor called." << RES << std::endl;
 	*this = cpy;
@@ -51,11 +55,9 @@ std::ostream &operator<<(std::ostream &out_stream, ShrubberyCreationForm const &
 	out_stream << BMAG << "ShrubberyCreationForm title: " << input.get_name() << std::endl;
 	out_stream << BMAG << "Grade required to sign: " << input.get_grade_to_sign() << std::endl;
 	out_stream << BMAG << "Grade required to exec: " << input.get_grade_to_exec() << std::endl;
-	out_stream << BMAG << "already signed : " << input.get_signed_status() <<std::endl;
+	out_stream << BMAG << "already signed : " << input.get_signed_status() << std::endl;
 	return out_stream;
 }
-
-
 
 // Exceptions handler =========================================================
 //=============================================================================
@@ -70,23 +72,39 @@ const char *ShrubberyCreationForm::GradeTooLowException::what() const throw()
 	return "Bad grade status: way too low.";
 }
 
-const char *ShrubberyCreationForm::ShrubberyCreationFormAlreadySigned::what() const throw()
+const char *ShrubberyCreationForm::ShrubberyCreationFormAlreadyExecuted::what() const throw()
 {
-	return "ShrubberyCreationForm already signed.";
+	return "ShrubberyCreationForm already executed.";
+}
+
+// Exceptions handler =========================================================
+//=============================================================================
+
+std::string ShrubberyCreationForm::get_target()
+{
+	return this->_target;
 }
 
 // members functions ==========================================================
 //=============================================================================
 
-// be_signed should be use in try/ catch scope in order
+// should be use in try/ catch scope in order
 // to avoid crash (because of the throw here)
 
-void ShrubberyCreationForm::be_signed(Bureaucrat& bureaucrat)
+void ShrubberyCreationForm::execute(Bureaucrat const &executor)
 {
-	if (bureaucrat.get_grade() > this->_grade_to_sign)
+	if (executor.get_grade_to_exec() > 137)
 		throw GradeTooLowException();
-	if (this->_is_signed == true)
-		throw ShrubberyCreationFormAlreadySigned();
+	if (this->_already_executed_flag == true)
+		throw ShrubberyCreationFormAlreadyExecuted();
 	else
-		this->_is_signed = true;
+	{
+		this->_already_executed_flag = true;
+		executor.create_file_and_plant_trees(this->_target);
+	}
+}
+
+void ShrubberyCReationForm::create_file_and_plant_trees(std::string target)
+{
+	
 }

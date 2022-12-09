@@ -5,7 +5,7 @@
 // constructs ans destruct======================================================
 //=============================================================================
 
-AForm::AForm(void) : _name("non valid forms"), _grade_to_sign(0), _grade_to_exec(0), _is_signed(false)
+AForm::AForm(void) : _name("non valid form"), _grade_to_sign(0), _grade_to_exec(0), _is_signed(false)
 {
 	std::cout << BWHT << this->_name << " AForm default constructor called." << RES << std::endl;
 	return;
@@ -93,7 +93,7 @@ const char *AForm::GradeTooLowException::what() const throw()
 
 const char *AForm::AFormAlreadySigned::what() const throw()
 {
-	return "AForm already signed.";
+	return "Form already signed.";
 }
 
 // members functions ==========================================================
