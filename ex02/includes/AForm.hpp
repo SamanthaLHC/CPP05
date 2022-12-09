@@ -46,7 +46,7 @@ class AForm
 //______________Members functions______________________________________
 
 		void be_signed(Bureaucrat& bureaucrat);
-		virtual void AForm_exectution();
+		virtual void exectute(Bureaucrat const& executor) const;
 
 	private:
 
