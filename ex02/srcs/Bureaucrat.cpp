@@ -101,24 +101,26 @@ void Bureaucrat::sign_form(AForm &form_to_sign)
 	{
 		form_to_sign.be_signed(*this);
 		std::cout << BYEL << this->_name << " signed " << form_to_sign.get_name()
-				  << RES<< std::endl;
+				  << RES << std::endl;
 	}
-	catch(const std::exception& err)	
+	catch (const std::exception &err)
 	{
 		std::cerr << BRED << this->_name << " couldn't sign " << form_to_sign.get_name()
-		<< " because: " << err.what() << std::endl;
+				  << " because: " << err.what() << std::endl;
 	}
 }
 
-void Bureaucrat::execute_form(AForm const & form)
+void Bureaucrat::execute_form(AForm const &form)
 {
 	try
 	{
-
+		form.execute(*this);
+		std::cout << BYEL << this->_name << " executed " << form.get_name()
+				  << RES << std::endl;
 	}
-	catch(const std::exception& err)	
+	catch (const std::exception &err)
 	{
 		std::cerr << BRED << this->_name << " couldn't execute " << form.get_name()
-		<< " because: " << err.what() << std::endl;
+				  << " because: " << err.what() << std::endl;
 	}
 }

@@ -9,7 +9,7 @@ class Bureaucrat;
 
 class ShrubberyCreationForm : public AForm
 {
-public:
+	public:
 	//______________Constructors an destructor_________________________________
 
 	ShrubberyCreationForm(std::string target);
@@ -20,19 +20,26 @@ public:
 
 	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &rhs);
 
-	//______________Accessors______________________________________
+	//______________Accessors___________________________________________________
 
 	std::string get_target();
 
-	//______________Members functions______________________________________
+	//______________Members functions___________________________________________
 
 	void execute(Bureaucrat const &executor) const;
 	void create_file_and_plant_trees(std::string target) const;
 
-private:
-	// default construct unavailable
-	ShrubberyCreationForm(void);
-	std::string _target;
+	//______________Exception___________________________________________________
+
+	class NotSignedException : public std::exception
+	{
+		const char *what() const throw();
+	};
+
+	private :
+		// default construct unavailable
+		ShrubberyCreationForm(void);
+		std::string _target;
 };
 
 std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm const &i);

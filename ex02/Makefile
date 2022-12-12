@@ -33,6 +33,7 @@ clean:
 fclean: clean
 	rm -rf ${NAME}
 	rm -rf ${OBJ_PATH}
+	rm -f *_shrubbery
 
 re: fclean
 	

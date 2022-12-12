@@ -15,7 +15,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("non_valid_form", 0, 
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubbery", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137)
 {
 	this->_target = target;
 	if (this->get_grade_to_sign() < 1 || this->get_grade_to_exec() < 1)
@@ -67,17 +67,12 @@ std::ostream &operator<<(std::ostream &out_stream, ShrubberyCreationForm const &
 // Exceptions handler =========================================================
 //=============================================================================
 
-const char *ShrubberyCreationForm::GradeTooHighException::what() const throw()
+const char *ShrubberyCreationForm::NotSignedException::what() const throw()
 {
-	return "Bad grade status: way too high.";
+	return "Form not signed.";
 }
 
-const char *ShrubberyCreationForm::GradeTooLowException::what() const throw()
-{
-	return "Bad grade status: way too low.";
-}
-
-// Exceptions handler =========================================================
+// Accessor =========================================================
 //=============================================================================
 
 std::string ShrubberyCreationForm::get_target()
@@ -92,13 +87,13 @@ std::string ShrubberyCreationForm::get_target()
 void ShrubberyCreationForm::create_file_and_plant_trees(std::string target) const
 {
 	std::string filename = target + "_shrubbery";
-	std::ofstream file(filename.c_str());
-	if(file.fail())
+	std::ofstream file;
+	file.open(filename.c_str(), std::ios::out);
+	if (file.fail())
 	{
-		std::cout << BRED << "ERROR: file could not be created." << RES << std::endl;
+		std::cerr << BRED << "Error with " << filename << RES << std::endl;
 		return;
 	}
-	file.open(filename.c_str(), std::ios::out | std::ios::trunc);
 	file << "        /\\       " << std::endl; 
     file << "       / *\\      " << std::endl; 
     file << "      /*  *\\     " << std::endl; 
@@ -110,7 +105,6 @@ void ShrubberyCreationForm::create_file_and_plant_trees(std::string target) cons
     file << "        ||        " << std::endl; 
     file << "        ||        " << std::endl;
 	file.close();
-
 }
 
 // should be use in try/ catch scope in order
@@ -120,7 +114,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 	if (executor.get_grade() > this->get_grade_to_exec())
 		throw GradeTooLowException();
 	else if (this->get_signed_status() == false)
-		throw AFormAlreadySigned();
+		throw NotSignedException();
 	else
 		this->create_file_and_plant_trees(this->_target);
 }
