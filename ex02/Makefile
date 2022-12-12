@@ -13,6 +13,7 @@ SRCS = $(addprefix $(SRCS_PATH), \
 		Bureaucrat.cpp \
 		AForm.cpp \
 		ShrubberyCreationForm.cpp \
+		PresidentialPardonForm.cpp \
 		main.cpp)
 
 OBJS	= $(SRCS:$(SRCS_PATH)%.cpp=$(OBJ_PATH)%.o)

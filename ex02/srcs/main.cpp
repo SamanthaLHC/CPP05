@@ -2,6 +2,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
@@ -23,6 +24,32 @@ int main()
 			random_vogon.sign_form(form);
 			vogon.execute_form(form);
 			std::cout << vogon << std::endl;
+			std::cout << BBLU << "_____execution rejected because of low grade: _____" << RES << std::endl;
+			Bureaucrat newbie("new bureaucrat", 150);
+			newbie.execute_form(form);
+		}
+		catch (std::exception const &err)
+		{
+			std::cerr << BRED << err.what() << RES << std::endl;
+		}
+	}
+	{
+		std::cout << std::endl;
+		std::cout << BCYN << "________CHECK PRESIDENTIAL FORM___________" << RES << std::endl;
+		std::cout << std::endl;
+		try
+		{
+			PresidentialPardonForm form("Presidential forgivness for executor Sam");
+			std::cout << form << std::endl;
+			Bureaucrat high_vogon("Kwaltz", 3);
+			Bureaucrat vogon("Jeltz", 15);
+			
+			std::cout << vogon << std::endl;
+			std::cout << BBLU << "_____execution rejected because form was not signed: _____" << RES << std::endl;
+			high_vogon.execute_form(form);
+			std::cout << BBLU << "_____President forgive: _____" << RES << std::endl;
+			vogon.sign_form(form);
+			high_vogon.execute_form(form);
 			std::cout << BBLU << "_____execution rejected because of low grade: _____" << RES << std::endl;
 			Bureaucrat newbie("new bureaucrat", 150);
 			newbie.execute_form(form);
