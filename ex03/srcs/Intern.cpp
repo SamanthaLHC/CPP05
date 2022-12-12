@@ -39,14 +39,14 @@ Intern &Intern::operator=(Intern const &rhs)
 std::ostream &operator<<(std::ostream &out_stream, Intern const &input)
 {
 	(void)input;
-	out_stream << BMAG << "Info : Just a random intern trying to climb the ladder.." << RES;
+	out_stream << BMAG << "Info : Just a random intern trying to climb the ladder.." << RES << std::endl;
 	return out_stream;
 }
 
 // Exceptions =================================================================
 //=============================================================================
 
-const char *Intern::NotAFormException::what() const throw()
+const char *Intern::NotValidFormException::what() const throw()
 {
 	return "This Form doesn't exist. Can not be created.";
 }
@@ -71,19 +71,21 @@ AForm *Intern::create_robotomy(std::string target)
 
 // should be use in try/ catch scope in order
 //  to avoid crash (because of the throw here)
-AForm *Intern::make_form(std::string form_request, std::string target)
+AForm *Intern::make_form(std::string form_type, std::string target)
 {
 	AForm *(Intern::*func_list[3])(std::string) = {&Intern::create_shrubbery, &Intern::create_presidential_pardon, 
 							&Intern::create_robotomy};
 	std::string form_name[3] = {"shrubbery creation", "presidential pardon", "robotomy request"};
-	for  (int i = 0; i < 3; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		if (form_name[i] == form_request)
+		std::cout << form_name[i] << std::endl;
+		// std::cout << form_type << std::endl;
+		if (form_name[i] == form_type)
 		{
-			std::cout << BYEL << "Intern creates " << form_request << " for " << target
+			std::cout << BYEL << "Intern creates " << form_type << " for " << target
 					  << RES << std::endl;
 			return (this->*func_list[i])(target);
 		}
 	}
-	throw NotAFormException();
+	throw NotValidFormException();
 }

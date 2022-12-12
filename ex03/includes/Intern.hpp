@@ -21,7 +21,7 @@ class Intern
 
 	//______________Exceptions__________________________________________________
 
-		class NotAFormException : public std::exception
+		class NotValidFormException : public std::exception
 		{
 			const char *what() const throw();
 		};

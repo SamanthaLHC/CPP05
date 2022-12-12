@@ -18,7 +18,7 @@ int main()
 			Bureaucrat random_vogon("Zarniwoop", 120);
 			AForm *rrf;
 			std::cout << BBLU << "_____should create shrubbery form: _____" << RES << std::endl;
-			rrf = someRandomIntern.make_form("robotomy request", "Bender");
+			rrf = someRandomIntern.make_form("shrubbery creation", "Bender");
 			std::cout << *rrf << std::endl;
 			rrf->be_signed(random_vogon);
 			std::cout << BBLU << "_____should plant trees: _____" << RES << std::endl;
