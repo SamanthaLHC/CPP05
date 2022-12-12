@@ -73,7 +73,6 @@ AForm *Intern::create_robotomy(std::string target)
 //  to avoid crash (because of the throw here)
 AForm *Intern::make_form(std::string form_request, std::string target)
 {
-
 	AForm *(Intern::*func_list[3])(std::string) = {&Intern::create_shrubbery, &Intern::create_presidential_pardon, 
 							&Intern::create_robotomy};
 	std::string form_name[3] = {"shrubbery creation", "presidential pardon", "robotomy request"};
