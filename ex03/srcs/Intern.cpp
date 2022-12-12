@@ -78,8 +78,6 @@ AForm *Intern::make_form(std::string form_type, std::string target)
 	std::string form_name[3] = {"shrubbery creation", "presidential pardon", "robotomy request"};
 	for (int i = 0; i < 3; i++)
 	{
-		std::cout << form_name[i] << std::endl;
-		// std::cout << form_type << std::endl;
 		if (form_name[i] == form_type)
 		{
 			std::cout << BYEL << "Intern creates " << form_type << " for " << target
