@@ -26,13 +26,12 @@ public:
 
 	//______________Members functions______________________________________
 
-	void exectute(Bureaucrat const &executor) const;
-	void create_file_and_plant_trees(std::string target);
+	void execute(Bureaucrat const &executor) const;
+	void create_file_and_plant_trees(std::string target) const;
 
 private:
 	// default construct unavailable
 	ShrubberyCreationForm(void);
-	bool 		_already_executed_flag;
 	std::string _target;
 };
 

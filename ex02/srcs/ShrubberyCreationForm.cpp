@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
 #include "colors.h"
@@ -10,7 +10,6 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("non_valid_form", 0, 0)
 {
-	this->_already_executed_flag = false;
 	this->_target = "unkwowm";
 	std::cout << BWHT << this->get_name() << " ShrubberyCreationForm default constructor called." << RES << std::endl;
 	return;
@@ -18,27 +17,31 @@ ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("non_valid_form", 0, 
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("shrubbery", 145, 137)
 {
-	this->_already_executed_flag = false;
 	this->_target = target;
-	if (this->_grade_to_sign < 1 || this->_grade_to_exec < 1)
+	if (this->get_grade_to_sign() < 1 || this->get_grade_to_exec() < 1)
 		throw GradeTooHighException();
-	else if (this->_grade_to_sign > 150 || this->_grade_to_exec > 150)
+	else if (this->get_grade_to_sign() > 145 || this->get_grade_to_exec() > 137)
 		throw GradeTooLowException();
 	else
-		std::cout << BWHT << this->_name << " ShrubberyCreationForm NAME constructor called." << RES << std::endl;
+	{
+		std::cout << BWHT << this->get_name() << " ShrubberyCreationForm NAME constructor called."
+				  << RES << std::endl;
+	}
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &cpy) : _name(cpy._name), _grade_to_sign(cpy._grade_to_sign),
-																				 _grade_to_exec(cpy._grade_to_exec), _is_signed(cpy._is_signed)
+ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &cpy)
+	: AForm("shrubbery", 145, 137)
 {
-	std::cout << BWHT << this->_name << " ShrubberyCreationForm copy constructor called." << RES << std::endl;
+	std::cout << BWHT << this->get_name() << " ShrubberyCreationForm copy constructor called."
+			  << RES << std::endl;
 	*this = cpy;
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
-	std::cout << BWHT << this->_name << " ShrubberyCreationForm destructor called" << RES << std::endl;
+	std::cout << BWHT << this->get_name() << " ShrubberyCreationForm destructor called"
+			  << RES << std::endl;
 	return;
 }
 
@@ -48,7 +51,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void)
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm const &rhs)
 {
 	if (this != &rhs)
-		this->_is_signed = rhs.get_signed_status();
+		this->_target = rhs._target;
 	return (*this);
 }
 
@@ -74,11 +77,6 @@ const char *ShrubberyCreationForm::GradeTooLowException::what() const throw()
 	return "Bad grade status: way too low.";
 }
 
-const char *ShrubberyCreationForm::ShrubberyCreationFormAlreadyExecuted::what() const throw()
-{
-	return "ShrubberyCreationForm already executed.";
-}
-
 // Exceptions handler =========================================================
 //=============================================================================
 
@@ -90,23 +88,39 @@ std::string ShrubberyCreationForm::get_target()
 // members functions ==========================================================
 //=============================================================================
 
-// should be use in try/ catch scope in order
-// to avoid crash (because of the throw here)
 
-void ShrubberyCreationForm::execute(Bureaucrat const &executor)
+void ShrubberyCreationForm::create_file_and_plant_trees(std::string target) const
 {
-	if (executor.get_grade_to_exec() > 137)
-		throw GradeTooLowException();
-	if (this->_already_executed_flag == true)
-		throw ShrubberyCreationFormAlreadyExecuted();
-	else
+	std::string filename = target + "_shrubbery";
+	std::ofstream file(filename.c_str());
+	if(file.fail())
 	{
-		this->_already_executed_flag = true;
-		executor.create_file_and_plant_trees(this->_target);
+		std::cout << BRED << "ERROR: file could not be created." << RES << std::endl;
+		return;
 	}
+	file.open(filename.c_str(), std::ios::out | std::ios::trunc);
+	file << "        /\\       " << std::endl; 
+    file << "       / *\\      " << std::endl; 
+    file << "      /*  *\\     " << std::endl; 
+    file << "     /*   * \\    " << std::endl; 
+    file << "    /   *    \\   " << std::endl; 
+    file << "   /  *     * \\  " << std::endl; 
+    file << "  / _ _   * _ _\\ " << std::endl; 
+    file << "        ||        " << std::endl; 
+    file << "        ||        " << std::endl; 
+    file << "        ||        " << std::endl;
+	file.close();
+
 }
 
-void ShrubberyCReationForm::create_file_and_plant_trees(std::string target)
+// should be use in try/ catch scope in order
+// to avoid crash (because of the throw here)
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-	
+	if (executor.get_grade() > this->get_grade_to_exec())
+		throw GradeTooLowException();
+	else if (this->get_signed_status() == false)
+		throw AFormAlreadySigned();
+	else
+		this->create_file_and_plant_trees(this->_target);
 }

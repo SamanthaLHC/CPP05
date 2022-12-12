@@ -110,7 +110,7 @@ void Bureaucrat::sign_form(AForm &form_to_sign)
 	}
 }
 
-void Bureaucrate::execute_form(Form const & form)
+void Bureaucrat::execute_form(AForm const & form)
 {
 	try
 	{
