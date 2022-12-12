@@ -22,6 +22,10 @@ int main()
 			std::cout << BBLU << "_____should plant a tree: _____" << RES << std::endl;
 			random_vogon.sign_form(form);
 			vogon.execute_form(form);
+			std::cout << vogon << std::endl;
+			std::cout << BBLU << "_____execution rejected because of low grade: _____" << RES << std::endl;
+			Bureaucrat newbie("new bureaucrat", 150);
+			newbie.execute_form(form);
 		}
 		catch (std::exception const &err)
 		{
