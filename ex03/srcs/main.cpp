@@ -36,13 +36,34 @@ int main()
 		try
 		{
 			Intern someRandomIntern;
-			Bureaucrat random_vogon("Zarniwoop", 120);
+			Bureaucrat random_vogon("Zarniwoop", 12);
 			AForm *rrf;
-			std::cout << BBLU << "_____should create shrubbery form: _____" << RES << std::endl;
-			rrf = someRandomIntern.make_form("shrubbery creation", "Bender");
+			std::cout << BBLU << "_____should create robotomy form: _____" << RES << std::endl;
+			rrf = someRandomIntern.make_form("robotomy request", "Bender");
 			std::cout << *rrf << std::endl;
 			rrf->be_signed(random_vogon);
-			std::cout << BBLU << "_____should plant trees: _____" << RES << std::endl;
+			std::cout << BBLU << "_____should heard drill and perform robotomy: _____" << RES << std::endl;
+			random_vogon.execute_form(*rrf);
+			delete rrf;
+		}
+		catch (const std::exception &err)
+		{
+			std::cerr << BRED << err.what() << RES << std::endl;
+		}
+	}
+	std::cout << BCYN << "________CHECK INTERN'S PRESIDENTIAL PARDON CREATION___________" << RES << std::endl;
+	std::cout << std::endl;
+	{
+		try
+		{
+			Intern someRandomIntern;
+			Bureaucrat random_vogon("Zarniwoop", 1);
+			AForm *rrf;
+			std::cout << BBLU << "_____should create shrubbery form: _____" << RES << std::endl;
+			rrf = someRandomIntern.make_form("presidential pardon", "Bender");
+			std::cout << *rrf << std::endl;
+			rrf->be_signed(random_vogon);
+			std::cout << BBLU << "_____should have a presidential pardon: _____" << RES << std::endl;
 			random_vogon.execute_form(*rrf);
 			delete rrf;
 		}
