@@ -94,15 +94,15 @@ void ShrubberyCreationForm::create_file_and_plant_trees(std::string target) cons
 		std::cerr << BRED << "Error with " << filename << RES << std::endl;
 		return;
 	}
-	file << "        /\\       " << std::endl; 
-    file << "       / *\\      " << std::endl; 
-    file << "      /*  *\\     " << std::endl; 
-    file << "     /*   * \\    " << std::endl; 
-    file << "    /   *    \\   " << std::endl; 
-    file << "   /  *     * \\  " << std::endl; 
-    file << "  / _ _   * _ _\\ " << std::endl; 
-    file << "        ||        " << std::endl; 
-    file << "        ||        " << std::endl; 
+	file << "        /\\       " << std::endl;
+    file << "       / *\\      " << std::endl;
+    file << "      /*  *\\     " << std::endl;
+    file << "     /*   * \\    " << std::endl;
+    file << "    /   *    \\   " << std::endl;
+    file << "   /  *     * \\  " << std::endl;
+    file << "  / _ _   * _ _\\ " << std::endl;
+    file << "        ||        " << std::endl;
+    file << "        ||        " << std::endl;
     file << "        ||        " << std::endl;
 	file.close();
 }

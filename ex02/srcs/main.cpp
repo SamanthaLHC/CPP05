@@ -66,7 +66,7 @@ int main()
 		std::cout << std::endl;
 		try
 		{
-			RobotomyRequestForm form("Newbie robotomy.");
+			RobotomyRequestForm form("Newbie");
 			std::cout << form << std::endl;
 			Bureaucrat high_vogon("Kwaltz", 3);
 			Bureaucrat vogon("Jeltz", 15);
