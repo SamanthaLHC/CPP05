@@ -15,7 +15,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("non_valid_form", 0, 
 	return;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137)
 {
 	this->_target = target;
 	if (this->get_grade_to_sign() < 1 || this->get_grade_to_exec() < 1)
