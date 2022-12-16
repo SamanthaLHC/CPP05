@@ -15,7 +15,7 @@ PresidentialPardonForm::PresidentialPardonForm(void) : AForm("non_valid_form", 0
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm(target, 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5)
 {
 	this->_target = target;
 	if (this->get_grade_to_sign() < 1 || this->get_grade_to_exec() < 1)

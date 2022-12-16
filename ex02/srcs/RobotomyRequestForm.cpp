@@ -16,7 +16,7 @@ RobotomyRequestForm::RobotomyRequestForm(void) : AForm("non_valid_form", 0, 0)
 	return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45)
 {
 	this->_target = target;
 	if (this->get_grade_to_sign() < 1 || this->get_grade_to_exec() < 1)

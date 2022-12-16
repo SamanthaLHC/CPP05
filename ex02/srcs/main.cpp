@@ -40,7 +40,7 @@ int main()
 		std::cout << std::endl;
 		try
 		{
-			PresidentialPardonForm form("Presidential forgivness for executor Sam");
+			PresidentialPardonForm form("Sam");
 			std::cout << form << std::endl;
 			Bureaucrat high_vogon("Kwaltz", 3);
 			Bureaucrat vogon("Jeltz", 15);
