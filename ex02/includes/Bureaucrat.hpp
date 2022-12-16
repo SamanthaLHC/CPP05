@@ -37,8 +37,8 @@ class Bureaucrat
 		};
 //______________Members functions______________________________________
 
-		void promotion_grade(unsigned int grade);
-		void demotion_grade(unsigned int grade);
+		void promotion_grade(void);
+		void demotion_grade(void);
 		void sign_form(AForm& form_to_sign);
 		void execute_form(AForm const & form);
 

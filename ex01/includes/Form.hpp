@@ -11,7 +11,7 @@ class Form
 	public:
 //______________Constructors an destructor_________________________________
 		
-		Form(std::string name, unsigned int grade_sign, unsigned int grade_exec);
+		Form(std::string const name, unsigned int grade_sign, unsigned int grade_exec);
 		Form(Form const &cpy);
 		~Form(void);
 

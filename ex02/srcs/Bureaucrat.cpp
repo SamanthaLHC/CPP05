@@ -83,15 +83,15 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 // promotion_grade() and demotion_grade() should be use in try/ catch scope in order
 // to avoid crash (because of the throw here)
 
-void Bureaucrat::promotion_grade(unsigned int grade)
+void Bureaucrat::promotion_grade(void)
 {
-	if (this->_grade <= 1 || ((this->_grade -= grade) <= 1))
+	if (this->_grade <= 1 || ((this->_grade -= 1) <= 1))
 		throw GradeTooHighException();
 }
 
-void Bureaucrat::demotion_grade(unsigned int grade)
+void Bureaucrat::demotion_grade(void)
 {
-	if (this->_grade >= 150 || ((this->_grade += grade) >= 150))
+	if (this->_grade >= 150 || ((this->_grade += 1) >= 150))
 		throw GradeTooLowException();
 }
 
