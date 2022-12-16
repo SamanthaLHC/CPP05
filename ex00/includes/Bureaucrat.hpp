@@ -35,8 +35,8 @@ class Bureaucrat
 		};
 //______________Members functions______________________________________
 
-		void promotion_grade(unsigned int grade);
-		void demotion_grade(unsigned int grade);
+		void promotion_grade(void);
+		void demotion_grade(void) ;
 
 	private:
 

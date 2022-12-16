@@ -8,24 +8,10 @@ int main()
 		std::cout << std::endl;
 		try
 		{
-			Bureaucrat vogon("Prostnetic Vogon Kwaltz", 1);
+			Bureaucrat vogon("vogon guard", 150);
 			std::cout << vogon << std::endl;
 			std::cout << BBLU << "_____should throw an exception: _____" << RES << std::endl;
-			vogon.promotion_grade(5);
-			std::cout << vogon << std::endl;
-		}
-		catch (std::exception const &err)
-		{
-			std::cerr << BRED << err.what() << RES << std::endl;
-		}
-	}
-	{
-		try
-		{
-			Bureaucrat vogon("Prostnetic Vogon Jeltz", 10);
-			std::cout << vogon << std::endl;
-			std::cout << BBLU << "_____should throw an exception: _____" << RES << std::endl;
-			vogon.promotion_grade(15);
+			vogon.demotion_grade();
 			std::cout << vogon << std::endl;
 		}
 		catch (std::exception const &err)
@@ -39,24 +25,10 @@ int main()
 		std::cout << std::endl;
 		try
 		{
-			Bureaucrat vogon("vogon guard", 150);
+			Bureaucrat vogon("Prostnetic vogon Kwaltz", 1);
 			std::cout << vogon << std::endl;
 			std::cout << BBLU << "_____should throw an exception: _____" << RES << std::endl;
-			vogon.demotion_grade(5);
-			std::cout << vogon << std::endl;
-		}
-		catch (std::exception const &err)
-		{
-			std::cerr << BRED << err.what() << RES << std::endl;
-		}
-	}
-	{
-		try
-		{
-			Bureaucrat vogon("vogon guard", 145);
-			std::cout << vogon << std::endl;
-			std::cout << BBLU << "_____should throw an exception: _____" << RES << std::endl;
-			vogon.demotion_grade(15);
+			vogon.promotion_grade();
 			std::cout << vogon << std::endl;
 		}
 		catch (std::exception const &err)
@@ -73,7 +45,7 @@ int main()
 			Bureaucrat vogon("Prostnetic Vogon Jeltz", 10);
 			std::cout << vogon.get_grade() << std::endl;
 			std::cout << vogon << std::endl;
-			vogon.promotion_grade(5);
+			vogon.promotion_grade();
 			std::cout << vogon.get_grade() << std::endl;
 
 			std::cout << vogon << std::endl;
@@ -89,7 +61,7 @@ int main()
 		{
 			Bureaucrat vogon("Prostnetic Vogon Jeltz", 10);
 			std::cout << vogon << std::endl;
-			vogon.demotion_grade(5);
+			vogon.demotion_grade();
 			std::cout << vogon << std::endl;
 		}
 		catch (std::exception const &err)
@@ -123,17 +95,6 @@ int main()
 		catch (std::exception const &err)
 		{
 			std::cerr << BRED << err.what() << RES << std::endl;
-		}
-	}
-	{
-		std::cout << std::endl;
-		std::cout << BCYN << "________CHECk COPY CONSTRUCTOR____________" << RES << std::endl;
-		std::cout << std::endl;
-
-		{
-			Bureaucrat pouet("Zarniwoop", 98);
-			Bureaucrat vogon_guard = pouet;
-			std::cout << vogon_guard << std::endl;
 		}
 	}
 }
