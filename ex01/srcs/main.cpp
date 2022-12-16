@@ -29,14 +29,14 @@ int main()
 		{
 			std::cout << BBLU << "_____check the case where he could not sign because of low grade: ____" << RES << std::endl;
 			std::cout << std::endl;
-			Bureaucrat vogon("Prostnetic Vogon Jeltz", 34);
+			Bureaucrat vogon("Prostnetic Vogon Jeltz", 21);
 			std::cout << vogon << std::endl;
 			vogon.sign_form(form_to_sign);
 			std::cout << form_to_sign << std::endl;
 			std::cout << BBLU << "___ promotion + attempt to sign again: ____" << RES << std::endl;
 			std::cout << std::endl;
 			std::cout << "grade before promotion: " << vogon.get_grade() << std::endl;
-			vogon.promotion_grade(14);
+			vogon.promotion_grade();
 			std::cout << "grade after promotion: " << vogon.get_grade() << std::endl;
 			std::cout << vogon.get_grade() << std::endl;
 			vogon.sign_form(form_to_sign);
